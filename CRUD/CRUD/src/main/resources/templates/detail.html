@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Detail Data Mahasiswa</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex items-center justify-center min-h-screen">
+  <div class="container max-w-4xl mx-auto p-5">
+    <div class="shadow-lg rounded-lg p-6">
+      <h1 class="text-3xl font-bold mb-4">Detail Data Mahasiswa</h1>
+      <div class="divider"></div>
+      <div class="grid grid-cols-1 gap-4">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">NIM</span>
+          </label>
+          <input type="number" id="nim" th:value="*{mahasiswa.nim}" class="input input-bordered" readonly />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Nama</span>
+          </label>
+          <input type="text" id="nama" th:value="*{mahasiswa.nama}" class="input input-bordered" readonly />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Jurusan</span>
+          </label>
+          <input type="text" id="jurusan" th:value="*{mahasiswa.jurusan}" class="input input-bordered" readonly />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Tanggal Lahir</span>
+          </label>
+          <input type="date" id="tanggalLahir" th:value="${mahasiswa.tanggalLahir}" class="input input-bordered"
+            readonly />
+        </div>
+      </div>
+      <div class="flex justify-end mt-6">
+        <a href="/" class="btn btn-warning">Kembali</a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

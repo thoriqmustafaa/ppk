@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Daftar Mahasiswa</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <main class="container mx-auto">
+    <h1 class="py-4 text-2xl font-bold">Daftar Mahasiswa</h1>
+    <div class="flex justify-between">
+      <form action="/" method="get">
+        <label class="input input-bordered flex items-center gap-2">
+          <!-- Search Icon and Input -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4 opacity-70">
+            <path fill-rule="evenodd"
+              d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+              clip-rule="evenodd" />
+          </svg>
+          <input type="text" class="grow" name="query" placeholder="Cari Mahasiswa" />
+        </label>
+      </form>
+      <a href="/add" class="btn btn-info">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="h-5 w-5">
+          <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            d="M12 4v16m8-8H4"></path>
+        </svg>
+        Tambah Mahasiswa
+      </a>
+    </div>
+    <div class="overflow-x-auto mt-5">
+      <table class="table">
+        <!-- Table Head -->
+        <thead>
+          <tr>
+            <th>NIM</th>
+            <th>Nama</th>
+            <th>Jurusan</th>
+            <th>Tanggal Lahir</th>
+            <th class="text-center">Detail</th>
+            <th class="text-center">Aksi</th>
+          </tr>
+        </thead>
+        <!-- Table Body -->
+        <tbody>
+          <!-- Loop over items -->
+          <tr th:each="mahasiswa : ${mahasiswas}">
+            <td class="border-t border-gray-400" th:text="${mahasiswa.nim}"></td>
+            <td class="border-t border-gray-400" th:text="${mahasiswa.nama}"></td>
+            <td class="border-t border-gray-400" th:text="${mahasiswa.jurusan}"></td>
+            <td class="border-t border-gray-400" th:text="${mahasiswa.tanggalLahir}"></td>
+            <td class="border-t border-gray-400 text-center">
+              <a th:href="@{/detail/{id}(id=${mahasiswa.id})}" class="btn btn-sm btn-primary">Detail</a>
+            </td>
+            <td class="border-t border-gray-400 text-center">
+              <a th:href="@{/edit/{id}(id=${mahasiswa.id})}" class="btn btn-sm btn-warning">Edit</a>
+              <a th:onclick="'return confirmDelete(' + ${mahasiswa.id} + ');'" class="btn btn-sm btn-error">Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- No Results Message -->
+    <div th:if="${#lists.isEmpty(mahasiswas)}" class="mt-5">
+      <p>No results found for "<span th:text="${param.query}"></span>".</p>
+    </div>
+  </main>
+
+  <!-- Delete Confirmation Script -->
+  <script>
+    function confirmDelete(id) {
+      if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+        window.location.href = "/delete/" + id;
+      }
+    }
+  </script>
+</body>
+
+</html>

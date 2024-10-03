@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Edit Data Mahasiswa</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <main class="container mx-auto">
+    <h1 class="py-4 text-2xl font-bold">Edit Data Mahasiswa</h1>
+    <form th:object="${mahasiswa}" th:action="@{/edit/{id}(id=${mahasiswa.id})}" method="post">
+      <label class="form-control w-full max-w-xs">
+        <span class="label-text py-2">NIM</span>
+        <input type="number" id="nim" th:field="*{nim}" required class="input input-bordered w-full max-w-xs" />
+        <p th:if="${#fields.hasErrors('nim')}" th:errors="*{nim}" class="text-sm text-red-600 mt-2"></p>
+      </label>
+      <label class="form-control w-full max-w-xs">
+        <span class="label-text py-2">Nama</span>
+        <input type="text" id="nama" th:field="*{nama}" required class="input input-bordered w-full max-w-xs" />
+        <p th:if="${#fields.hasErrors('nama')}" th:errors="*{nama}" class="text-sm text-red-600 mt-2"></p>
+      </label>
+      <label class="form-control w-full max-w-xs">
+        <span class="label-text py-2">Jurusan</span>
+        <input type="text" id="jurusan" th:field="*{jurusan}" required class="input input-bordered w-full max-w-xs" />
+        <p th:if="${#fields.hasErrors('jurusan')}" th:errors="*{jurusan}" class="text-sm text-red-600 mt-2"></p>
+      </label>
+      <label class="form-control w-full max-w-xs">
+        <span class="label-text py-2">Tanggal Lahir</span>
+        <input type="date" id="tanggalLahir" th:field="*{tanggalLahir}" required
+          class="input input-bordered w-full max-w-xs" />
+        <p th:if="${#fields.hasErrors('tanggalLahir')}" th:errors="*{tanggalLahir}" class="text-sm text-red-600 mt-2"></p>
+      </label>
+      <div class="mt-5 flex justify-rightd-flex justify-content-end align-items-center gap-2">
+        <a href="/" class="btn btn-warning">Kembali</a>
+        <button type="submit" class="btn btn-accent">Simpan</button>
+      </div>
+    </form>
+  </main>
+  <script th:src="@{/js/checkValidation.js}"></script>
+</body>
+
+</html>
