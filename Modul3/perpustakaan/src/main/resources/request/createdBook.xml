@@ -1,0 +1,13 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.polstat.com/perpustakaan/gen">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gen:createBookRequest>
+            <gen:book>
+                <gen:id>1</gen:id>
+                <gen:title>The Java Programming Language</gen:title>
+                <gen:author>James Gosling</gen:author>
+                <gen:description>Ini Contoh Buku</gen:description>
+            </gen:book>
+        </gen:createBookRequest>
+    </soapenv:Body>
+</soapenv:Envelope>

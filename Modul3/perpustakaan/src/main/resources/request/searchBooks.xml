@@ -1,0 +1,8 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="http://www.polstat.com/perpustakaan/gen">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gen:searchBooksRequest>
+            <gen:keyword>Java</gen:keyword>
+        </gen:searchBooksRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
